@@ -11,6 +11,10 @@ Express Learning course provided by Linux Foundation Training & Certification:
 
 TODO: remove the section above before first draft submitted
 
+December 2023
+
+*_Authors_*: Skye Kim, Vamsi Koneti, Ethan Shieh, Chris Torres
+
 # Self-assessment outline
 
 ## Table of Contents
