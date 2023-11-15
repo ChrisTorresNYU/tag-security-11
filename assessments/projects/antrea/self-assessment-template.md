@@ -1,4 +1,4 @@
-# Self-assessment
+# Self-assessment TEMPLATE FILE
 The Self-assessment is the initial document for projects to begin thinking about the
 security of the project, determining gaps in their security, and preparing any security
 documentation for their users. This document is ideal for projects currently in the
@@ -9,11 +9,9 @@ For a detailed guide with step-by-step discussion and examples, check out the fr
 Express Learning course provided by Linux Foundation Training & Certification: 
 [Security Assessments for Open Source Projects](https://training.linuxfoundation.org/express-learning/security-self-assessments-for-open-source-projects-lfel1005/).
 
-TODO: remove the section above before first draft submitted
-
 # Self-assessment outline
 
-## Table of Contents
+## Table of contents
 
 * [Metadata](#metadata)
   * [Security links](#security-links)
@@ -32,20 +30,24 @@ TODO: remove the section above before first draft submitted
 
 ## Metadata
 
+A table at the top for quick reference information, later used for indexing.
+
 |   |  |
 | -- | -- |
-| Software | https://github.com/antrea-io/antrea |
-| Security Provider | No  |
-| Languages | Go, Shell, PowerShell, Makefile, Dockerfile, Jinja |
-| SBOM | <ul><li>Open vSwitch: https://github.com/openvswitch/ovs</li></ul> |
+| Software | A link to the software’s repository.  |
+| Security Provider | Yes or No. Is the primary function of the project to support the security of an integrating system?  |
+| Languages | languages the project is written in |
+| SBOM | Software bill of materials.  Link to the libraries, packages, versions used by the project, may also include direct dependencies. |
 | | |
 
 ### Security links
 
+Provide the list of links to existing security documentation for the project. You may
+use the table below as an example:
 | Doc | url |
 | -- | -- |
-| Security file | https://github.com/antrea-io/antrea/blob/main/docs/security.md |
-| Default and optional configs | https://github.com/antrea-io/antrea/blob/main/docs/configuration.md |
+| Security file | https://my.security.file |
+| Default and optional configs | https://example.org/config |
 
 ## Overview
 
