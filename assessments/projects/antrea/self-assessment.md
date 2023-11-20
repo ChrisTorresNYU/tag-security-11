@@ -57,6 +57,9 @@ One or two sentences describing the project -- something memorable and accurate
 that distinguishes your project to quickly orient readers who may be assessing
 multiple projects.
 
+Antrea is a Kubernetes network plugin that uses Open vSwitch to extend the
+capabilities and observability of a Kubernetes cluster's network.
+
 ### Background
 
 Provide information for reviewers who may not be familiar with your project's
