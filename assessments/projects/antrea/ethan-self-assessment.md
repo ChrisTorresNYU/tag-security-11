@@ -51,11 +51,10 @@ reference: https://github.com/antrea-io/antrea/blob/main/CONTRIBUTING.md
 reference: https://github.com/antrea-io/antrea/blob/main/ci/README.md
 
 ### Communication Channels
-reference: https://github.com/antrea-io/antrea#community
-reference: https://github.com/antrea-io/antrea/blob/main/SECURITY.md
 
 The Antrea project uses a variety of communication channels for internal,
-inbound, and outbound communications.
+inbound, and outbound communications. This section lists the communication
+channels that are publicly listed on the GitHub project README.
 
 * Internal:
   * Antrea team members communicate through the
@@ -64,12 +63,12 @@ inbound, and outbound communications.
     announcements and discuss PRs. 
   * The Antrea GitHub project's 
     [issues page](https://github.com/antrea-io/antrea/issues)
-    to track feature requests and known bugs. The team also uses the GitHub project's
+    to track feature requests, known bugs, and proposals. The team also uses 
+    the GitHub project's
     [PR page](https://github.com/antrea-io/antrea/pulls)
     to manage and review contributions to the project. 
-  * Synchronous community meetings are held biweekly on Tuesdays for team members 
-    to discuss releases, feature proposals, and user issues. Feature proposals
-    are typically presented in slideshow form. The 
+  * Synchronous community meetings are held biweekly on Tuesdays for team 
+    members to discuss releases, feature proposals, and user issues. Feature proposals are typically presented in slideshow form. The 
     [minutes](https://github.com/antrea-io/antrea/wiki/Community-Meetings)
     and 
     [recording](https://www.youtube.com/playlist?list=PLuzde2hYeDBdw0BuQCYbYqxzoJYY1hfwv) 
@@ -80,12 +79,18 @@ inbound, and outbound communications.
     mailing list was briefly formerly used for internal development communication.
 
 * Inbound
-  * Live office hours are held biweekly on Tuesdays when community meetings are
+  * [Live office hours](https://calendar.google.com/calendar/u/0/embed?src=uuillgmcb1cu3rmv7r7jrhcrco@group.calendar.google.com)
+    are held biweekly on Tuesdays when community meetings are
     not held. During office hours, users can join and ask Antrea team members
     questions.
-  * todo: slack
-  * todo: github issues
-  * todo: team's mailing list for security issues
+  * Users can contact the Antrea team through the 
+    [Antrea channel](https://kubernetes.slack.com/messages/CR2J23M0X) 
+    on the Kubernetes slack for questions and support.
+  * Users can post bug reports, feature requests, and support requests on the
+    [issues page](https://github.com/antrea-io/antrea/issues)
+    of the project's GitHub repository.
+  * Users can report security vulnerabilities by emailing the Antrea maintainers
+    at the address cncf-antrea-maintainers@lists.cncf.io.
 
 * Outbound
   * The Antrea team occasionally uses their live office hours time to hold a
