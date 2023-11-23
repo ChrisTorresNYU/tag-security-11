@@ -47,8 +47,52 @@ reference: see buildpacks, harbor, kyverno, pixie, for lightweight good examples
 ## Secure development practices
 
 ### Development Pipeline
-reference: https://github.com/antrea-io/antrea/blob/main/CONTRIBUTING.md
-reference: https://github.com/antrea-io/antrea/blob/main/ci/README.md
+
+Development on Antrea is done on GitHub. To ensure that contributions are
+safe and properly reviewed prior to being added to the main branch of the
+Antrea repository, the Antrea team follows the secure development practices of:
+
+* Installing 
+  [Git client-side hooks](https://github.com/antrea-io/antrea/blob/main/hack/git_client_side_hooks) 
+  to:
+  * Run golangci-lint to check source code for style and safety before a commit.
+  * Run scripts to check 
+    [documentation spelling](https://github.com/antrea-io/antrea/blob/main/hack/verify-spelling.sh), 
+    [formatting](https://github.com/antrea-io/antrea/blob/main/hack/verify-docs-for-website.sh), 
+    and to update 
+    [table of contents](https://github.com/antrea-io/antrea/blob/main/hack/update-toc.sh) 
+    before a commit.
+  * Check that a 
+    [Developer Certificate of Origin](https://developercertificate.org/) 
+    (DCO) is present for every new commit before a push.
+* Making changes in a new branch of a fork of the Antrea repository and
+  submitting a pull request (PR) before their change can be integrated into
+  the main repository.
+* Having multiple reviewers check over a PR and provide feedback before the
+  change is merged by a maintainer. Minor changes can be reviewed and approved
+  by one team member, but most PRs are reviewed by 2-3 team members.
+* Running 
+  [GitHub Action and Jenkins continuous integration (CI)](https://github.com/antrea-io/antrea/blob/main/ci/README.md)
+  checks relevant
+  to their contribution when a PR is made. These include 
+  [Go linters](https://github.com/antrea-io/antrea/blob/main/ci/README.md#go-linters),
+  unit tests (that use the 
+  [Go testing](https://golang.org/pkg/testing/)
+  package), 
+  [integration tests](https://github.com/antrea-io/antrea/blob/main/test/integration), 
+  [end-to-end tests](https://github.com/antrea-io/antrea/blob/main/test/e2e), and 
+  [Kubernetes upstream tests](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-testing/e2e-tests.md).
+  * Daily and weekly Jenkins tests are automatically run on the main branch of 
+    the Antrea repository. Developers are informed of test failures through
+    the
+    [developer mailing list](https://groups.google.com/forum/#!forum/projectantrea-dev).
+* Using a 
+  [DCO GitHub App](https://github.com/apps/dco) 
+  to check that a DCO is present in every commit of a PR before review of that 
+  PR begins.
+* Cherry-picking PRs with bugfixes to older, currently-supported releases so
+  that every currently-supported version of Antrea benefits from the 
+  contribution.
 
 ### Communication Channels
 
@@ -59,8 +103,8 @@ channels that are publicly listed on the GitHub project README.
 * Internal:
   * Antrea team members communicate through the
     [Antrea channel](https://kubernetes.slack.com/messages/CR2J23M0X)
-    on the Kubernetes Slack. The Slack channel is used by the maintainers to post
-    announcements and discuss PRs. 
+    on the Kubernetes Slack. The Slack channel is used by the maintainers to 
+    post announcements and discuss PRs. 
   * The Antrea GitHub project's 
     [issues page](https://github.com/antrea-io/antrea/issues)
     to track feature requests, known bugs, and proposals. The team also uses 
@@ -68,7 +112,8 @@ channels that are publicly listed on the GitHub project README.
     [PR page](https://github.com/antrea-io/antrea/pulls)
     to manage and review contributions to the project. 
   * Synchronous community meetings are held biweekly on Tuesdays for team 
-    members to discuss releases, feature proposals, and user issues. Feature proposals are typically presented in slideshow form. The 
+    members to discuss releases, feature proposals, and user issues. Feature 
+    proposals are typically presented in slideshow form. The 
     [minutes](https://github.com/antrea-io/antrea/wiki/Community-Meetings)
     and 
     [recording](https://www.youtube.com/playlist?list=PLuzde2hYeDBdw0BuQCYbYqxzoJYY1hfwv) 
