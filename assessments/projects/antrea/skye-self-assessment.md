@@ -57,8 +57,7 @@ multiple projects.
 
 ### Background
 
-Provide information for reviewers who may not be familiar with your project's
-domain or problem area.
+Antrea is a Kubernetes-native project that utilizes the Container Network Interface (CIN) and Kubernetes NetworkPolicy. The tool facilitates pod networking and enforces networking policies in Kubernetes clusters. By leveraging Open vSwitch (OVS), Antrea extends programmable networks to Kubernetes, providing a unified network stack that simplifies networking across diverse clouds and operating systems. Antrea is designed to make it easier for users to troubleshoot through Kubernetes controller patterns and diagnostics compatible with familiar network operator tools. Open vSwitch also allows for advanced network use cases to be implemented, such as kernel bypass and network service mesh. 
 
 ### Actors
 These are the individual parts of your system that interact to provide the 
@@ -71,16 +70,7 @@ The means by which actors are isolated should also be described, as this is ofte
 what prevents an attacker from moving laterally after a compromise.
 
 ### Actions
-These are the steps that a project performs in order to provide some service
-or functionality.  These steps are performed by different actors in the system.
-Note, that an action need not be overly descriptive at the function call level.  
-It is sufficient to focus on the security checks performed, use of sensitive 
-data, and interactions between actors to perform an action.  
-
-For example, the access server receives the client request, checks the format, 
-validates that the request corresponds to a file the client is authorized to 
-access, and then returns a token to the client.  The client then transmits that 
-token to the file server, which, after confirming its validity, returns the file.
+In a Kubernetes cluster, Antrea initializes the Antrea Agent and the Antrea Controller. The Antrea Agent sets up Open vSwitch (OVS) bridges on each Kubernetes Node to create connections between Pods and manages the IP address allocation. The Antrea Controller watches for changes in the NetworkPolicy, Pod, and Namespace resources from the Kubernetes API. Based on instructions from the Antrea Controller, the Antrea Agent enforces network policies locally by creating OVS flows on each Node. 
 
 ### Goals
 The intended goals of the projects including the security guarantees the project
@@ -88,10 +78,7 @@ The intended goals of the projects including the security guarantees the project
 key to change data it stores).
 
 ### Non-goals
-Non-goals that a reasonable reader of the project’s literature could believe may
-be in scope (e.g., Flibble does not intend to stop a party with a key from storing
-an arbitrarily large amount of data, possibly incurring financial cost or overwhelming
- the servers)
+Antrea is designed specifically for Kubernetes clusters and primarily focuses on managing internal communication within the clusters rather than interaction with external devices. Antrea does not provide any application layer services and does not handle tasks beyond networking between Pods. 
 
 ## Self-assessment use
 
