@@ -157,8 +157,45 @@ channels that are publicly listed on the GitHub project README.
     channel was discontinued around November 2022.
 
 ### Ecosystem
-reference: https://github.com/antrea-io/antrea/blob/main/docs/design/architecture.md 
-reference: https://antrea.io/docs/v1.14.0/adopters/
+
+Antrea is a Kubernetes-native network plugin that implements networking using
+Kubernetes' [Container Network Interface](https://github.com/containernetworking/cni) 
+(CNI) to manage pod network interfaces. The project is designed primarily for
+use in Kubernetes clusters.
+
+Antrea works to expand the cloud native ecosystem by extending the networking
+capabilities of Kubernetes. The project adds more network policies, support for
+multi-OS clusters (Linux and Windows), plugin-native troubleshooting tools 
+(traceflows), offloading networking to hardware on a node, and encrypted 
+inter-node networking (IPsec or WireGuard).
+
+Other Kubernetes CNI plugins exist, such as 
+[Calico](https://github.com/projectcalico/calico), 
+[Flannel](https://github.com/flannel-io/flannel), 
+and [Cilium](https://github.com/cilium/cilium). The main benefit to the
+cloud-native ecosystem that Antrea provides is an implementation of the CNI
+using 
+[Open vSwitch](https://www.openvswitch.org/). 
+Open vSwitch is a virtual switch that operates in the 
+data plane that creates virtual interfaces for pods and tunnels between nodes.
+By using Open vSwitch, Antrea can support
+[much higher network policy performance, processor utilization, and packet throughput](https://www.vmware.com/products/antrea-container-networking.html) 
+than CNI plugins that use more common data plane technology like 
+[eBPF](https://ebpf.io/), 
+[built-in Linux bridges](https://wiki.linuxfoundation.org/networking/bridge), 
+or 
+[Host Network Service](https://learn.microsoft.com/en-us/virtualization/windowscontainers/container-networking/architecture)
+(for Windows). Another benefit of Open vSwitch is its Windows support -- 
+this reduces the complexity of development and usage because only one data
+plane technology needs to be supported.
+
+For companies that want to run applications on a cloud environment, 
+[VMware offers enterprise-grade technical support](https://www.vmware.com/products/antrea-container-networking.html) 
+for companies using Antrea alongside their cloud application on VMware Tanzu
+or vSphere. In addition, VMware sponsors development on the Antrea project so
+that there is always active work being done on the project. All of the
+maintainers and some of the contributors to the project are affiliated with
+VMware.
 
 
 ## Security issue resolution
