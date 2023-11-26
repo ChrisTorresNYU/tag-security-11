@@ -2,50 +2,6 @@
 
 ## Secure development practices
 
-* Development Pipeline.  A description of the testing and assessment processes that
-  the software undergoes as it is developed and built. Be sure to include specific
-information such as if contributors are required to sign commits, if any container
-images immutable and signed, how many reviewers before merging, any automated checks for
-vulnerabilities, etc.
-
-* Communication Channels. Reference where you document how to reach your team or
-  describe in corresponding section.
-  * Internal. How do team members communicate with each other?
-  * Inbound. How do users or prospective users communicate with the team?
-  * Outbound. How do you communicate with your users? (e.g. flibble-announce@
-    mailing list)
-
-* Ecosystem. How does your software fit into the cloud native ecosystem?  (e.g.
-  Flibber is integrated with both Flocker and Noodles which covers
-  virtualization for 80% of cloud users. So, our small number of "users" actually
-  represents very wide usage across the ecosystem since every virtual instance uses
-  Flibber encryption by default.)
-
-## Security issue resolution
-
-* Responsible Disclosures Process. A outline of the project's responsible
-  disclosures process should suspected security issues, incidents, or
-  vulnerabilities be discovered both external and internal to the project. The
-  outline should discuss communication methods/strategies.
-  * Vulnerability Response Process. Who is responsible for responding to a
-    report. What is the reporting process? How would you respond?
-
-* Incident Response. A description of the defined procedures for triage,
-  confirmation, notification of vulnerability or security incident, and
-patching/update availability.
-
----
-
-# Draft
-
-todo: delete all "reference:" lines when merging draft into self-assessment.md
-
-reference: https://github.com/antrea-io/antrea/blob/main/docs/design/architecture.md
-reference: https://github.com/cncf/tag-security/blob/main/assessments/Open_and_Secure.pdf 
-reference: see buildpacks, harbor, kyverno, pixie, for lightweight good examples
-
-## Secure development practices
-
 ### Development Pipeline
 
 Development on Antrea is done on GitHub. To ensure that contributions are
@@ -201,8 +157,76 @@ VMware.
 ## Security issue resolution
 
 ### Responsible Disclosures Process
-reference: https://github.com/antrea-io/antrea/blob/main/SECURITY.md
 
-### Vulnerability Response Process
+If a security issue is found in Antrea, the discoverer of that issue is 
+instructed to report the issue directly to the maintainers at the email address 
+cncf-antrea-maintainers@lists.cncf.io. Any kind of security vulnerability,
+irregardless of severity, should be reported to the maintainers so that the
+issue is not made public before a fix is developed. When reporting the
+vulnerability to the maintainers, the reporter must describe how to reproduce the
+issue (including the software that they used), what the reporter believes the
+attack vector and attack surface to be, the impact of the vulnerability on 
+a cluster if exploited, and the impact of the vulnerability on Antrea components.
+
+Once a report is received by the maintainers, a maintainer (the coordinator of 
+that issue) is responsible with working with the reporter
+to determine the severity of the vulnerability and to patch the vulnerability. 
+Vulnerabilities may be demoted to regular issues by the coordinator if the
+maintainers are low risk.
+
+The responsible disclosures process for Antrea is similar to the responsible 
+disclosures process of other large open source projects, like the
+[Linux kernel](https://www.kernel.org/doc/html/latest/process/security-bugs.html), 
+[Kubernetes](https://kubernetes.io/docs/reference/issues-security/security/), and 
+[Cilium](https://github.com/cilium/cilium/blob/main/SECURITY.md) 
+in that vulnerabilities are privately reported to the maintainers. So, the 
+reporting process is satisfactory for ensuring that vulnerabilities are 
+responsibly disclosed at the appropriate time. To incentivize contributors to
+find and fix vulnerabilities, the Antrea project can consider implementing a
+bug bounty program in the future as 
+[Kubernetes](https://kubernetes.io/blog/2020/01/14/kubernetes-bug-bounty-announcement/)
+has done. However, this is likely presently infeasible due to the small size of 
+the project.
 
 ### Incident Response
+
+Security issues are triaged based on the risk of the issue. Issues with high
+risk have a known, practical attack vector and can compromise the functionality
+of Antrea or a Kubernetes cluster through Antrea. The Antrea maintainers use
+a 
+[1-7 scale](https://github.com/antrea-io/antrea/blob/main/SECURITY.md#reference-taxonomy-for-issue-risk) 
+to score the risk of a vulnerability -- a 1 is given to the highest
+risk vulnerabilities and a 7 is given to low risk ones. A score of 1-3 is given
+to vulnerabilities that can be successfully exploited by a malicious actor if 
+known -- these are confirmed vulnerabilities. These vulnerabilities are fixed 
+privately by the coordinator (maintainer
+assigned to handle the vulnerability) and the reporter. Vulnerabilities with a
+score of 4-7 are issues that cannot be practically exploited, not a 
+vulnerability, or a vulnerability in an unsupported branch. These lower-risk
+vulnerabilities will be demoted to a GitHub issue (become public) and handled as 
+an issue.
+
+Once a patch for the vulnerability has been developed by the reporter (possibly
+alongside the coordinator and/or other maintainers), the reporter emails the 
+patch to the address cncf-antrea-maintainers@lists.cncf.io with a Git patch 
+containing the fix (patched from the current main branch). The maintainers will
+then review the patch in the same way that a member of the Antrea team would
+review a PR. The patch is sent via email rather than a GitHub PR to ensure that
+the vulnerability remains confidential during the review process.
+
+When the patch for a vulnerability is approved by the maintainers for merging,
+the coordinator will create a GitHub issue for the vulnerability. At this point, 
+the vulnerability is publicly disclosed. Then, the coordinator submits PR with the 
+patch and a maintainer promptly merges the PR to the main branch. The PR can be 
+merged immediately because it had already been privately reviewed. The patch can 
+also be 
+[cherry-picked to other supported release branches](https://github.com/antrea-io/antrea/blob/main/docs/contributors/cherry-picks.md) 
+if necessary. This procedure ensures that the vulnerability is disclosed only
+after the incident has been resolved to reduce the risk of the vulnerability
+being realized in a real-world environment.
+
+Though the coordinator typically discloses the vulnerability and submits the PR
+with the patch, the original reporter is credited in the GitHub issue, PR, and 
+listed as the patch's commit author.
+
+
