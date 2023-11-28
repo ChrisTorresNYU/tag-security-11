@@ -57,7 +57,7 @@ multiple projects.
 
 ### Background
 
-Antrea is a Kubernetes-native project that utilizes the Container Network Interface (CIN) and Kubernetes NetworkPolicy. The tool facilitates pod networking and enforces networking policies in Kubernetes clusters. By leveraging Open vSwitch (OVS), Antrea extends programmable networks to Kubernetes, providing a unified network stack that simplifies networking across diverse clouds and operating systems. Antrea is designed to make it easier for users to troubleshoot through Kubernetes controller patterns and diagnostics compatible with familiar network operator tools. Open vSwitch also allows for advanced network use cases to be implemented, such as kernel bypass and network service mesh. 
+Antrea is a Kubernetes-native project that utilizes the Container Network Interface (CIN) and Kubernetes NetworkPolicy. The tool facilitates communication between the containers in a Kubernetes cluster, handling aspects like network routing and security policies. Networking in Kubernetes can be complex due to the dynamic nature of container deployment and scaling, and Antrea aims to simplify and secure this process. By leveraging Open vSwitch (OVS), Antrea extends programmable networks to Kubernetes, providing a unified network stack that simplifies networking across diverse clouds and operating systems. Antrea is designed to make it easier for users to troubleshoot through Kubernetes controller patterns and diagnostics compatible with familiar network operator tools. Open vSwitch also allows for advanced network use cases to be implemented, such as kernel bypass and network service mesh. 
 
 ### Actors
 These are the individual parts of your system that interact to provide the 
@@ -78,7 +78,7 @@ The intended goals of the projects including the security guarantees the project
 key to change data it stores).
 
 ### Non-goals
-Antrea is designed specifically for Kubernetes clusters and primarily focuses on managing internal communication within the clusters rather than interaction with external devices. Antrea does not provide any application layer services and does not handle tasks beyond networking between Pods. 
+Antrea is designed specifically for Kubernetes clusters and primarily focuses on managing internal communication within the clusters rather than interaction with external devices. It is not suitable for non-Kubernetes environments. Antrea isn't designed to be an all-in-one security solution for Kubernetes clusters. It focuses on network communications but does not provide any application layer services or protection against application-level vulnerabilities. Antrea is also not a full-fledged network monitoring tool. While it offers some basic insights into network traffic, it doesn't provide deep network analysis or troubleshooting features. Lastly, Antrea doesn't control how much network resources (like bandwidth) each container or service uses in the cluster. 
 
 ## Self-assessment use
 
