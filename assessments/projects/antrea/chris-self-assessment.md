@@ -61,14 +61,13 @@ Provide information for reviewers who may not be familiar with your project's
 domain or problem area.
 
 ### Actors
-These are the individual parts of your system that interact to provide the 
-desired functionality.  Actors only need to be separate, if they are isolated
-in some way.  For example, if a service has a database and a front-end API, but
-if a vulnerability in either one would compromise the other, then the distinction
-between the database and front-end is not relevant.
+The Antrea Agent: A primary actor in this ecosystem is the Antrea Agent, deployed on each Kubernetes node. This agent is pivotal in managing the networking of pods, interfacing directly with the Open vSwitch (OVS) to execute data plane operations. It applies the network policies as defined in Kubernetes, thereby playing a critical role in regulating network traffic and enforcing security rules at the node level.
 
-The means by which actors are isolated should also be described, as this is often
-what prevents an attacker from moving laterally after a compromise.
+The Antrea Controller: Complementing the Antrea Agent is the Antrea Controller, a centralized component that administers the entire Antrea CNI deployment across the cluster. Its primary function is to process network policies, ensuring uniform implementation throughout the Kubernetes cluster. The Antrea Controller maintains an overarching view of the network state and policies, facilitating a coordinated approach to network management and security.
+
+Kubernetes API Server Interaction: External to Antrea but integral to its operation is the Kubernetes API Server. This actor serves as the communication hub for Antrea, providing the necessary information about network policies, pod lifecycle events, and other essential Kubernetes resources. The interaction between Antrea and the Kubernetes API Server is fundamental for the dynamic adaptation of network configurations in response to changes within the Kubernetes environment.
+
+Open vSwitch (OVS): At the heart of the data plane operations lies the Open vSwitch (OVS), a high-performance, multilayer virtual switch. OVS is responsible for forwarding network packets based on the configurations and policies set by the Antrea Agents. It forms the backbone of the network’s data plane, efficiently handling network traffic within the cluster.
 
 ### Actions
 These are the steps that a project performs in order to provide some service
@@ -83,9 +82,7 @@ access, and then returns a token to the client.  The client then transmits that
 token to the file server, which, after confirming its validity, returns the file.
 
 ### Goals
-The intended goals of the projects including the security guarantees the project
- is meant to provide (e.g., Flibble only allows parties with an authorization
-key to change data it stores).
+The main goal of Antrea is to enhance network connectivity and security within Kubernetes clusters. It focuses on ensuring that containers can communicate efficiently and securely, using strict network policies to allow only authorized traffic. Antrea uses Open vSwitch for high-performance networking, making it suitable for large deployments. In terms of security, Antrea encrypts data moving across the cluster to protect against potential breaches. However, it's important to note that Antrea primarily addresses network-level security, not broader security issues like application vulnerabilities. Overall, Antrea's aim is to provide a reliable and secure networking solution for Kubernetes environments.
 
 ### Non-goals
 Non-goals that a reasonable reader of the project’s literature could believe may
@@ -122,9 +119,7 @@ the project, such as deployment configurations, settings, etc.  These should als
 included in threat modeling.
 
 ## Project compliance
-
-* Compliance.  List any security standards or sub-sections the project is
-  already documented as meeting (PCI-DSS, COBIT, ISO, GDPR, etc.).
+Regarding the compliance of the Antrea project with established security standards, there is no direct documentation or claim that Antrea meets specific standards like PCI-DSS, COBIT, ISO standards, GDPR, or others. Antrea's primary role is as a network plugin for Kubernetes, focusing on network connectivity and security within Kubernetes clusters. Although it incorporates security measures that may align with aspects of these standards, particularly in network security and data protection, it does not explicitly conform to these standards as a standalone entity. For organizations using Antrea, ensuring compliance with such standards would typically involve evaluating their entire Kubernetes architecture, including Antrea, as part of a comprehensive compliance strategy. Thus, while Antrea plays a role in creating a secure network environment, its compliance with specific security standards would ultimately be determined by how it is integrated and used within an organization's broader Kubernetes infrastructure.
 
 ## Secure development practices
 
